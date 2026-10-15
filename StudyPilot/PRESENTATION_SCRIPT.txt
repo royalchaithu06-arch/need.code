@@ -1,0 +1,55 @@
+STUDYPILOT — INNOHACKS 2.0 PRESENTATION SCRIPT
+Suggested duration: 3–4 minutes
+
+SLIDE 1 — INTRODUCTION
+Good morning, respected judges. We are Team StudyPilot. Our project addresses the INNOHACKS 2.0 EdTech problem statement, “What to Study Next” Recommender. StudyPilot helps learners turn quiz performance into a clear next step, instead of revising every topic equally.
+
+SLIDE 2 — PROBLEM AND SOLUTION
+Students often know their marks, but they may not know which concepts need attention. A generic timetable cannot adapt to each learner's understanding. StudyPilot starts by selecting a class from Class 1 to Class 12 or Undergraduate, and then choosing a subject. It gives a short, level-aligned assessment, scores each topic, ranks priorities, and creates a plan based on the time available.
+
+SLIDE 3 — TECHNOLOGY STACK
+The interface uses HTML, CSS and JavaScript. Python with Flask provides the backend and APIs. SQLite stores the account profile, selected class and subject, and quiz attempts. Passwords are stored as hashes, rather than plain text. For the first prototype, the recommendation engine is transparent rule-based logic; we are not claiming it is a trained machine-learning model.
+
+SLIDE 4 — ARCHITECTURE AND WORKFLOW
+The workflow has five stages: select a learning path, take the diagnostic quiz, calculate and save topic scores, rank the topics and allocate study time, then retest and continue from saved history. Our priority formula is: Priority equals 100 minus the topic score, multiplied by 0.8, plus topic importance multiplied by 4. Lower scores and higher importance move a topic earlier in the plan. Before the first diagnostic, topics are labelled as needing a baseline, not as confirmed weaknesses.
+
+SLIDE 5 — FEATURES AND INNOVATION
+The core features are a class-aware quiz, explainable topic priority, a study plan that fits the learner's available time, and saved login-based progress. Students can practise their weakest topic, compare a new score with the previous attempt, and review quiz history after signing in again. Our differentiator is that the next action is tied to topic-level evidence, and the profile adapts from primary school through college.
+
+SLIDE 6 — IMPACT AND FUTURE SCOPE
+The target users are school students and college learners. Expected benefits include clearer revision priorities, practical study tasks, and a record of progress across sessions. We would evaluate the system by measuring retest score changes, completion of suggested plans, topic coverage and learner feedback. Those learning outcomes still need real-world testing. Future work includes more curriculum- and board-aligned question banks, educator-reviewed content, prerequisite mapping, spaced reminders and teacher-facing dashboards.
+
+LIVE DEMO — USE THIS EXACT ORDER
+1. Open the app at http://127.0.0.1:5000 on the laptop running Flask.
+2. Click “Explore the demo workspace” so no signup is needed during the demo.
+3. Click “Build my study plan” and answer all six questions.
+4. Show the topic-level results and explain why the first topic is prioritised.
+5. Start focused practice, submit the retest and show the score comparison.
+6. Open “Progress history” to show that the session is saved.
+7. Open “Edit learning path” and select a different class or Undergraduate to show how subjects change.
+
+CLOSING LINE
+StudyPilot turns learning evidence into a practical next step: diagnose, prioritise, practise, and track progress. Thank you. We welcome your questions.
+
+LIKELY JUDGE QUESTIONS
+
+Q: Is this really AI?
+A: The current MVP uses an explainable, rule-based recommendation algorithm. We deliberately chose transparent logic so we could finish and validate the end-to-end workflow. A future version could compare rule-based recommendations with a trained model using verified learning data.
+
+Q: How do you identify weakness?
+A: We calculate each topic's score from the student's answers, then combine the inverse score with the topic's importance. The plan explains the priority and suggests an action.
+
+Q: Can it support Class 1 through college?
+A: The interface supports Class 1–12 and Undergraduate. This prototype groups classes into curriculum bands and includes curated sample questions for the selected subject. It is not yet a complete syllabus for every board; the next step is educator-reviewed content for each grade and curriculum.
+
+Q: Where is the data saved?
+A: Account profiles and quiz attempts are saved in SQLite. The account password is stored as a hash. For public production deployment, we would configure secure hosting and persistent managed storage.
+
+Q: What proves that it improves learning?
+A: The prototype records retest scores, but we do not claim validated learning gains yet. We would run a student pilot and evaluate score changes, plan completion, usage and student feedback.
+
+Q: What happens if a student has not taken a quiz yet?
+A: StudyPilot labels topics as needing a baseline. It does not claim that the student is weak until quiz evidence is available.
+
+IMPORTANT PRESENTATION NOTE
+The local URL works only on the laptop running the server. If the judges need to open the app from another device, a public deployment is required. Do not describe localhost as a public URL.

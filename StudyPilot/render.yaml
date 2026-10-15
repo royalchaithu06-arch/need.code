@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: studypilot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /health

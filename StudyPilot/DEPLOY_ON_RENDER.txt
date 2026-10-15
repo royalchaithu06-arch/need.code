@@ -1,0 +1,13 @@
+FASTEST DEMO: RUN LOCALLY
+For an in-person presentation, double-click run.bat and open http://127.0.0.1:5000. Use the “Explore the demo workspace” button. This is the most reliable fallback if you do not have time to configure public hosting.
+
+PUBLIC DEPLOYMENT (if you have time)
+1. Create a GitHub repository and upload the contents of this project folder (app.py, requirements.txt, templates/, static/, render.yaml and Procfile).
+2. In Render, create a new Web Service from that repository.
+3. Build command: pip install -r requirements.txt
+4. Start command: gunicorn app:app
+5. Set a unique SECRET_KEY environment variable.
+6. Configure a persistent disk and point STUDYPILOT_DB to a path on it, or migrate to a managed database, so student accounts persist across restarts/deploys.
+7. Deploy and wait until the service reports live. Use the exact URL Render assigns; do not use 127.0.0.1 as a public URL.
+
+NOTE: This is a hackathon prototype. Verify the full flow after deployment. Current SQLite question-bank content is held in app.py; profile and quiz-attempt data are stored in the database.

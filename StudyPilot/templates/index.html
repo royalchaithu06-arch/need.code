@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111329">
+  <meta name="description" content="StudyPilot creates a personalized, explainable study plan from your quiz performance.">
+  <title>StudyPilot — your next best step</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+
+  <main id="authView" class="auth-shell">
+    <section class="auth-story">
+      <a class="brand brand-large" href="#"><span class="brand-mark"><i></i><i></i><i></i></span><span>study<span class="brand-light">pilot</span></span></a>
+      <div class="story-copy">
+        <div class="eyebrow light"><span class="live-dot"></span> YOUR PERSONAL LEARNING COMPASS</div>
+        <h1>Don't study<br>more. Study <span>smarter.</span></h1>
+        <p>Turn quiz results into your next best step. A study plan that understands your class, your subject, and what you need to practise next.</p>
+        <div class="story-benefits"><div><span class="benefit-icon">↗</span><span><b>Know your gaps</b><small>Topic-by-topic understanding</small></span></div><div><span class="benefit-icon">✦</span><span><b>Get a clear plan</b><small>Made for the time you have</small></span></div><div><span class="benefit-icon">↻</span><span><b>See your progress</b><small>Your learning history stays saved</small></span></div></div>
+      </div>
+      <div class="story-footer"><span>BUILT FOR EVERY LEARNING STAGE</span><span>Class 1 <i>→</i> Class 12 <i>→</i> College</span></div>
+      <div class="story-orb orb-a"></div><div class="story-orb orb-b"></div>
+    </section>
+
+    <section class="auth-panel-wrap">
+      <div class="auth-panel">
+        <div class="auth-mobile-brand"><span class="brand-mark"><i></i><i></i><i></i></span><span>study<span class="brand-light">pilot</span></span></div>
+        <div class="auth-heading"><div class="eyebrow">WELCOME TO STUDYPILOT</div><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Pick up where your learning left off.</p></div>
+        <div class="auth-tabs"><button type="button" class="auth-tab active" id="loginTab">Log in</button><button type="button" class="auth-tab" id="registerTab">Create account</button></div>
+        <form id="loginForm" class="auth-form">
+          <label>Email address<input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+          <label>Password<div class="password-wrap"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" data-target="loginPassword" aria-label="Show password">◉</button></div></label>
+          <button type="submit" class="button button-primary button-wide" id="loginButton">Log in to your workspace <span>→</span></button>
+        </form>
+        <form id="registerForm" class="auth-form hidden">
+          <label>Your name<input id="registerName" type="text" autocomplete="name" placeholder="Your full name" minlength="2" required></label>
+          <label>Email address<input id="registerEmail" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+          <label>Password<div class="password-wrap"><input id="registerPassword" type="password" autocomplete="new-password" placeholder="At least 6 characters" minlength="6" required><button type="button" class="password-toggle" data-target="registerPassword" aria-label="Show password">◉</button></div></label>
+          <div class="form-grid"><label>Class / level<select id="registerGrade" required>{% for grade in grade_options %}<option value="{{ grade }}" {% if grade == 'Class 8' %}selected{% endif %}>{{ grade }}</option>{% endfor %}</select></label><label>Subject<select id="registerSubject" required><option>Science</option></select></label></div>
+          <button type="submit" class="button button-primary button-wide" id="registerButton">Create my learning space <span>→</span></button>
+        </form>
+        <div class="auth-divider"><span>or jump straight in</span></div>
+        <button type="button" class="button button-demo button-wide" id="demoLogin"><span class="demo-spark">✦</span> Explore the demo workspace <span>↗</span></button>
+        <div class="demo-note"><span class="lock-icon">♢</span> Your quiz history and learning preferences are saved to your account on this app.</div>
+        <div id="authMessage" class="auth-message hidden" role="alert"></div>
+        <div class="auth-legal">StudyPilot · INNOHACKS 2.0 student prototype</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" id="brandHome"><span class="brand-mark"><i></i><i></i><i></i></span><span>study<span class="brand-light">pilot</span></span></a>
+      <div class="workspace-label">YOUR WORKSPACE</div>
+      <button class="nav-item active" id="navOverview"><span class="nav-glyph">⌂</span> Overview</button>
+      <button class="nav-item" id="navPlan"><span class="nav-glyph">☷</span> Study planner</button>
+      <button class="nav-item" id="navHistory"><span class="nav-glyph">◷</span> Progress history</button>
+      <div class="sidebar-level-card"><div class="level-card-icon">✦</div><div><b id="sideGrade">Class 8</b><span id="sideSubject">Science</span></div><button id="editPath" title="Change class or subject">✎</button></div>
+      <div class="sidebar-bottom"><div class="sidebar-orb">✦</div><b>Small steps.<br>Real progress.</b><p>A clear next step is better than a perfect timetable.</p><span class="version-label">INNOHACKS 2.0 · MVP</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="Toggle menu">☰</button><div><div class="eyebrow">YOUR LEARNING WORKSPACE</div><h1 id="pageTitle">Your overview</h1></div><div class="topbar-right"><div class="top-date"><span class="online-dot"></span><span>Learning profile saved</span></div><button class="user-chip" id="userMenu"><span class="avatar" id="avatar">S</span><span><b id="userName">Student</b><small id="userGradeTop">Class 8 · Science</small></span><span class="menu-chevron">⌄</span></button><div class="user-popover hidden" id="userPopover"><button id="profileMenu">Edit learning path</button><button id="logoutButton">Log out</button></div></div></header>
+
+      <section id="overviewView" class="view-section">
+        <section class="hero-banner"><div class="hero-copy"><div class="hero-pill"><span class="sparkle">✦</span> YOUR NEXT BEST STEP STARTS HERE</div><h2>Make your next<br>study session <em>count.</em></h2><p>StudyPilot finds your learning gaps and helps you spend study time where it matters most.</p><button class="button button-light" id="startDiagnosticTop">Build my study plan <span>↗</span></button><div class="hero-proof"><span class="proof-avatars"><i>✦</i><i>✓</i><i>↗</i></span><span>Personalised to <b id="heroGrade">your class</b> and your pace</span></div></div><div class="hero-visual" aria-hidden="true"><div class="hero-ring ring-one"></div><div class="hero-ring ring-two"></div><div class="float-dot dot-one"></div><div class="float-dot dot-two"></div><div class="visual-card visual-card-back"><span class="mini-caption">TODAY'S FOCUS</span><div class="mini-line wide"></div><div class="mini-line"></div><div class="mini-line short"></div><div class="mini-badge">+1 step closer</div></div><div class="visual-card visual-card-front"><div class="visual-card-head"><span>YOUR LEARNING MAP</span><span class="visual-star">✦</span></div><div class="visual-progress-ring"><div><b id="heroScore">—</b><small>MASTERY</small></div></div><div class="visual-card-foot"><span class="foot-dot"></span><span id="heroScoreNote">Your baseline begins here</span></div></div><div class="visual-floating"><span>↗</span><b>Progress, made personal</b></div></div><div class="hero-glow"></div></section>
+
+        <section class="section-block"><div class="section-head"><div><div class="eyebrow">THE BIG PICTURE</div><h2>Your learning snapshot</h2><p>Small signals that help you decide what to work on next.</p></div><div class="subject-chip"><span class="subject-chip-icon">▦</span><span id="subjectChip">Science</span><span class="chip-grade" id="gradeChip">Class 8</span></div></div>
+          <div class="stats-grid"><article class="stat-card stat-purple"><div class="stat-top"><span>AVERAGE MASTERY</span><span class="stat-symbol">◉</span></div><div class="stat-value" id="averageStat">—<small>%</small></div><div class="stat-note" id="averageNote">Take a diagnostic to set your baseline</div><div class="stat-spark spark-a"></div></article><article class="stat-card stat-blue"><div class="stat-top"><span>TOPICS ASSESSED</span><span class="stat-symbol">▤</span></div><div class="stat-value" id="assessedStat">0<small> / 3</small></div><div class="stat-note">Topic-level understanding</div><div class="stat-spark spark-b"></div></article><article class="stat-card stat-orange"><div class="stat-top"><span>QUIZ SESSIONS</span><span class="stat-symbol">↻</span></div><div class="stat-value" id="attemptsStat">0</div><div class="stat-note">Your journey, one attempt at a time</div><div class="stat-spark spark-c"></div></article></div>
+        </section>
+
+        <section class="dashboard-grid"><article class="panel panel-topic"><div class="panel-heading"><div><h3>Topic mastery</h3><p>Your results, topic by topic.</p></div><span class="panel-icon purple-icon">◫</span></div><div id="topicList" class="topic-list"><div class="empty-state"><div class="empty-art">◎</div><b>Your learning map starts here</b><p>Take a short diagnostic and see your strengths and gaps.</p></div></div></article><article class="panel panel-next"><div class="panel-heading"><div><h3>Your next best step</h3><p>A recommendation with a reason.</p></div><span class="panel-icon gold-icon">✦</span></div><div id="nextStepContent" class="next-step-content"><div class="recommendation-placeholder"><div class="target-art">◎</div><b>Let's find your focus</b><p>StudyPilot will rank topics after your first quiz.</p><button class="button button-primary" id="startDiagnosticPanel">Find my focus <span>→</span></button></div></div></article></section>
+
+        <section class="panel plan-panel" id="studyPlannerPanel"><div class="panel-heading plan-heading"><div><div class="eyebrow">YOUR TIME, YOUR PLAN</div><h3>Today's study plan</h3><p>Set your available time. StudyPilot will prioritise the next steps.</p></div><div class="plan-controls"><label for="studyMinutes">I have</label><select id="studyMinutes"><option value="15">15 min</option><option value="30" selected>30 min</option><option value="45">45 min</option><option value="60">1 hour</option><option value="90">90 min</option><option value="120">2 hours</option></select><button class="button button-outline button-small" id="updatePlan">Refresh plan</button></div></div><div id="studyPlan" class="study-plan"><div class="plan-empty"><span class="plan-empty-icon">◷</span><b>Your plan will appear here</b><p>Complete a diagnostic to receive topic priorities based on your answers.</p><button class="text-link" id="startPlanQuiz">Start a quick diagnostic →</button></div></div></section>
+        <section class="honesty-note"><span class="honesty-icon">✦</span><p><b>How StudyPilot works</b><span>Quiz answers → topic scores → explainable priorities → focused practice. Your recommendations are based on transparent rules, not a black-box score.</span></p></section>
+      </section>
+
+      <section id="quizView" class="view-section hidden"><div class="quiz-layout"><div class="quiz-main panel"><div class="quiz-topline"><button class="text-button" id="cancelQuiz">← Back to overview</button><span class="quiz-type-tag" id="quizTypeTag">DIAGNOSTIC</span></div><div class="eyebrow">QUICK LEARNING CHECK</div><h2 id="quizHeading">Let's map what you know.</h2><p class="quiz-intro" id="quizIntro">Answer honestly. Your results will guide your revision plan.</p><div class="progress-row"><span id="progressLabel">0 of 6 answered</span><span id="progressPercent">0% complete</span></div><div class="progress-track"><div id="quizProgress" class="progress-fill"></div></div><form id="quizForm"><div id="questionsContainer"></div><div class="quiz-actions"><span id="answerHint">Choose an answer for every question.</span><button class="button button-primary" type="submit" id="submitQuiz">Reveal my study plan <span>→</span></button></div></form></div><aside class="quiz-side"><div class="quiz-side-badge">✦</div><div class="eyebrow">A NOTE BEFORE YOU BEGIN</div><h3>This is a learning check, not a judgement.</h3><p>Honest answers help us spot which concepts deserve your attention.</p><div class="quiz-tips"><div><span>01</span>Find the topics to strengthen.</div><div><span>02</span>Understand why each topic matters.</div><div><span>03</span>Practise again and track progress.</div></div><div class="quiz-side-bottom">Designed for <b id="quizGradeSide">Class 8</b> · <b id="quizSubjectSide">Science</b></div></aside></div></section>
+
+      <section id="resultsView" class="view-section hidden"><div class="results-banner"><div><div class="eyebrow light">YOUR SESSION RESULTS</div><h2 id="resultTitle">Your learning map is ready.</h2><p id="resultSubtitle">Here is what your answers tell us.</p><div class="results-tag"><span>✦</span> Personalised next steps</div></div><div class="score-circle" id="overallScoreCircle"><span id="overallScore">—</span><small>YOUR SCORE</small></div></div><section class="panel result-topic-panel"><div class="panel-heading"><div><h3>Topic-by-topic results</h3><p>Scores and changes from your previous attempts.</p></div><span class="subject-chip" id="resultSubjectChip">Science</span></div><div id="resultTopicList" class="result-topic-list"></div></section><div class="dashboard-grid results-grid"><article class="panel"><div class="panel-heading"><div><h3>Recommended next step</h3><p>Start with the highest-priority topic.</p></div><span class="panel-icon gold-icon">✦</span></div><div id="resultRecommendation"></div></article><article class="panel"><div class="panel-heading"><div><h3>Make time count</h3><p>Your first few study tasks.</p></div><span class="panel-icon purple-icon">◷</span></div><div id="resultPlanPreview" class="result-plan-preview"></div></article></div><div class="results-actions"><button class="button button-primary" id="startTargeted">Practise my weakest topic <span>→</span></button><button class="button button-outline" id="againDiagnostic">Retake diagnostic</button><button class="button button-quiet" id="backOverview">Back to overview</button></div></section>
+
+      <section id="historyView" class="view-section hidden"><div class="section-head history-head"><div><div class="eyebrow">YOUR LEARNING JOURNEY</div><h2>Progress history</h2><p>Every session saved to your account, ready to pick up next time.</p></div><div class="history-total"><b id="historyTotal">0</b><span>saved sessions</span></div></div><section class="panel history-panel"><div class="panel-heading"><div><h3>Recent sessions</h3><p>Your latest diagnostic and focused practice attempts.</p></div><span class="panel-icon purple-icon">◷</span></div><div id="historyList" class="history-list"><div class="empty-state"><div class="empty-art">◷</div><b>Your first session is waiting</b><p>Your completed quizzes will appear here.</p></div></div></section></section>
+
+      <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+      <footer class="footer"><span><b>StudyPilot</b> · INNOHACKS 2.0</span><span>Turn learning evidence into your next step.</span></footer>
+    </main>
+  </div>
+
+  <div id="pathModal" class="modal-overlay hidden"><div class="path-modal"><button id="closePathModal" class="modal-close" aria-label="Close">×</button><div class="modal-icon">✦</div><div class="eyebrow">YOUR LEARNING PROFILE</div><h2>What are you studying?</h2><p>Choose a class and subject. StudyPilot will adapt the practice questions and plan.</p><form id="pathForm"><label>Class / level<select id="pathGrade" required>{% for grade in grade_options %}<option value="{{ grade }}">{{ grade }}</option>{% endfor %}</select></label><label>Subject<select id="pathSubject" required></select></label><button type="submit" class="button button-primary button-wide">Save learning path <span>→</span></button></form></div></div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

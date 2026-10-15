@@ -1,0 +1,28 @@
+STUDYPILOT — QUICK START (WINDOWS)
+
+1. Extract this ZIP to a folder, for example Desktop\studypilot.
+2. Install Python 3.10 or newer if it is not already installed.
+3. Double-click run.bat.
+   - The first run creates a local virtual environment and installs Flask.
+   - Keep the black terminal window open while using the app.
+4. Open http://127.0.0.1:5000 in Chrome or Edge.
+5. Click “Explore the demo workspace” for the fastest demo. No signup is needed.
+   Or create your own account; your profile and quiz history are stored in SQLite.
+
+DEMO ACCOUNT (also usable on the login tab)
+Email: demo@studypilot.app
+Password: PilotDemo2026!
+
+WHAT TO SHOW THE JUDGES
+1. Open StudyPilot and sign in using Explore the demo workspace.
+2. Click “Build my study plan” / “Find my focus”.
+3. Answer all six questions and submit.
+4. Show the topic-level scores and explainable recommendation.
+5. Start focused practice, submit, then open Progress history to show saved sessions.
+6. Use “Edit learning path” to switch between Class 1–12 and Undergraduate, with subject options changing to match the selected stage.
+
+IMPORTANT
+- http://127.0.0.1:5000 is local to your laptop. It is not a public URL for remote judges.
+- Keep the terminal open while demonstrating.
+- This is an INNOHACKS prototype. Do not enter sensitive or real student records.
+- Before public deployment, set a unique SECRET_KEY and configure persistent storage for SQLite (or migrate to a managed database).
